@@ -1,0 +1,103 @@
+Summary:	The GNU version of the awk text processing utility
+Name:		gawk
+Version:	3.1.5
+Release:	%mkrel 3
+License:	GPL
+Group:		Text tools
+URL:		http://www.gnu.org/software/gawk/gawk.html
+Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.bz2
+Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}-ps.tar.bz2
+Patch0:		gawk-3.1.3-getpgrp_void.patch
+Patch1:		gawk-3.1.5-open.patch
+Provides:	awk
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	byacc
+Requires(pre):	info-install
+
+%description
+The gawk packages contains the GNU version of awk, a text processing
+utility.  Awk interprets a special-purpose programming language to do
+quick and easy text pattern matching and reformatting jobs. Gawk should
+be upwardly compatible with the Bell Labs research version of awk and
+is almost completely compliant with the 1993 POSIX 1003.2 standard for
+awk.
+
+Install the gawk package if you need a text processing utility. Gawk is
+considered to be a standard Linux tool for processing text.
+
+%package	doc
+Summary:	Documentation about the GNU version of the awk text processing utility
+Group:		Books/Computer books
+
+%description	doc
+The gawk packages contains the GNU version of awk, a text processing
+utility.  Awk interprets a special-purpose programming language to do
+quick and easy text pattern matching and reformatting jobs. Gawk should
+be upwardly compatible with the Bell Labs research version of awk and
+is almost completely compliant with the 1993 POSIX 1003.2 standard for
+awk.
+
+%prep
+%setup -q -b 1
+%patch0 -p1 -b .getpgrp_void
+%patch1 -p0 -b .open
+
+%build
+%configure
+%make
+
+%check
+%make check
+
+%install
+[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+
+%makeinstall  bindir=%{buildroot}/bin
+%find_lang %{name}
+
+rm -f %{buildroot}%{_infodir}/dir
+mkdir -p %{buildroot}%{_bindir}
+cd %{buildroot}%{_datadir}
+mkdir awk &&
+for  i in *.awk;do
+mv -f $i awk
+done
+cd %{buildroot}%{_mandir}
+mkdir -p man1
+for i in *;do
+   mv -f $i man1 || true
+done
+cd man1
+ln -sf gawk.1.bz2 awk.1.bz2
+cd %{buildroot}%{_bindir}
+ln -sf ../../bin/awk %{buildroot}%{_bindir}/awk
+ln -sf ../../bin/gawk %{buildroot}%{_bindir}/gawk
+mv %{buildroot}/bin/pgawk %{buildroot}%{_bindir}
+rm -f %{buildroot}/bin/pgawk-%{version}
+
+
+
+%post
+%_install_info gawk.info
+
+%preun
+%_remove_install_info gawk.info
+
+%clean
+[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+
+%files -f %{name}.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) /bin/*
+%attr(755,root,root) %{_bindir}/*
+%{_mandir}/*/*
+%{_infodir}/*
+%{_libdir}/awk
+%{_datadir}/awk
+
+%files doc
+%defattr(-,root,root)
+%doc README FUTURES INSTALL LIMITATIONS NEWS
+%doc README_d POSIX.STD doc/gawk.ps doc/awkcard.ps
+
+
