@@ -10,7 +10,6 @@ Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}-ps.tar.bz2
 Patch0:		gawk-3.1.3-getpgrp_void.patch
 Patch1:		gawk-3.1.5-open.patch
 Provides:	awk
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	byacc
 Requires(pre):	info-install
 
