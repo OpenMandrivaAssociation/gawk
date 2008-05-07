@@ -1,14 +1,13 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	3.1.5
-Release:	%mkrel 4
-License:	GPL
+Version:	3.1.6
+Release:	%mkrel 1
+License:	GPLv3+
 Group:		Text tools
 URL:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.bz2
-Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}-ps.tar.bz2
+Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}-ps.tar.gz
 Patch0:		gawk-3.1.3-getpgrp_void.patch
-Patch1:		gawk-3.1.5-open.patch
 Provides:	awk
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	byacc
@@ -40,10 +39,9 @@ awk.
 %prep
 %setup -q -b 1
 %patch0 -p1 -b .getpgrp_void
-%patch1 -p0 -b .open
 
 %build
-%configure
+%configure2_5x
 %make
 
 %check
@@ -52,7 +50,7 @@ awk.
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
-%makeinstall  bindir=%{buildroot}/bin
+%makeinstall_std  bindir=/bin
 %find_lang %{name}
 
 rm -f %{buildroot}%{_infodir}/dir
@@ -74,8 +72,6 @@ ln -sf ../../bin/awk %{buildroot}%{_bindir}/awk
 ln -sf ../../bin/gawk %{buildroot}%{_bindir}/gawk
 mv %{buildroot}/bin/pgawk %{buildroot}%{_bindir}
 rm -f %{buildroot}/bin/pgawk-%{version}
-
-
 
 %post
 %_install_info gawk.info
