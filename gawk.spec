@@ -1,7 +1,7 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
 Version:	3.1.6
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPLv3+
 Group:		Text tools
 URL:		http://www.gnu.org/software/gawk/gawk.html
@@ -53,25 +53,19 @@ awk.
 %makeinstall_std  bindir=/bin
 %find_lang %{name}
 
-rm -f %{buildroot}%{_infodir}/dir
+rm %{buildroot}%{_infodir}/dir
 mkdir -p %{buildroot}%{_bindir}
 cd %{buildroot}%{_datadir}
-mkdir awk &&
-for  i in *.awk;do
-mv -f $i awk
+mkdir awk && for i in *.awk;do
+  mv $i awk
 done
-cd %{buildroot}%{_mandir}
-mkdir -p man1
-for i in *;do
-   mv -f $i man1 || true
-done
-cd man1
-ln -sf gawk.1.bz2 awk.1.bz2
+cd %{buildroot}%{_mandir}/man1
+ln -s gawk.1 awk.1
 cd %{buildroot}%{_bindir}
-ln -sf ../../bin/awk %{buildroot}%{_bindir}/awk
-ln -sf ../../bin/gawk %{buildroot}%{_bindir}/gawk
+ln -s ../../bin/awk %{buildroot}%{_bindir}/awk
+ln -s ../../bin/gawk %{buildroot}%{_bindir}/gawk
 mv %{buildroot}/bin/pgawk %{buildroot}%{_bindir}
-rm -f %{buildroot}/bin/pgawk-%{version}
+rm %{buildroot}/bin/pgawk-%{version}
 
 %post
 %_install_info gawk.info
