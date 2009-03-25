@@ -53,7 +53,6 @@ awk.
 %makeinstall_std  bindir=/bin
 %find_lang %{name}
 
-rm %{buildroot}%{_infodir}/dir
 mkdir -p %{buildroot}%{_bindir}
 cd %{buildroot}%{_datadir}
 mkdir awk && for i in *.awk;do
