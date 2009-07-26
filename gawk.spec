@@ -12,7 +12,6 @@ Patch1:		gawk-3.1.7-fix-str-fmt.patch
 Provides:	awk
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	byacc
-BuildRequires:	libsigsegv-devel
 Requires(pre):	info-install
 
 %description
