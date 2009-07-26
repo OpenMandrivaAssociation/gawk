@@ -1,16 +1,18 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	3.1.6
-Release:	%mkrel 4
+Version:	3.1.7
+Release:	%mkrel 1
 License:	GPLv3+
 Group:		Text tools
 URL:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.bz2
-Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}-ps.tar.gz
+Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-3.1.6-ps.tar.gz
 Patch0:		gawk-3.1.3-getpgrp_void.patch
+Patch1:		gawk-3.1.7-fix-str-fmt.patch
 Provides:	awk
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	byacc
+BuildRequires:	libsigsegv-devel
 Requires(pre):	info-install
 
 %description
@@ -38,7 +40,9 @@ awk.
 
 %prep
 %setup -q -b 1
+mv ../%{name}-3.1.6/doc/*.ps doc
 %patch0 -p1 -b .getpgrp_void
+%patch1 -p0 -b .str
 
 %build
 %configure2_5x
@@ -87,6 +91,4 @@ rm %{buildroot}/bin/pgawk-%{version}
 %files doc
 %defattr(-,root,root)
 %doc README FUTURES INSTALL LIMITATIONS NEWS
-%doc README_d POSIX.STD doc/gawk.ps doc/awkcard.ps
-
-
+%doc README_d POSIX.STD doc/*.ps
