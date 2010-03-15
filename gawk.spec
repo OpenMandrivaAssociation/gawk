@@ -9,10 +9,13 @@ Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.bz2
 Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-3.1.6-ps.tar.gz
 Patch0:		gawk-3.1.3-getpgrp_void.patch
 Patch1:		gawk-3.1.7-fix-str-fmt.patch
+Patch2:		gawk-3.1.7-external_libsigsegv.diff
 Provides:	awk
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	byacc
+BuildRequires:	gettext-devel
+BuildRequires:	libsigsegv-devel >= 2.8
 Requires(pre):	info-install
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The gawk packages contains the GNU version of awk, a text processing
@@ -40,11 +43,16 @@ awk.
 %prep
 %setup -q -b 1
 mv ../%{name}-3.1.6/doc/*.ps doc
+rm -rf ../%{name}-3.1.6
 %patch0 -p1 -b .getpgrp_void
 %patch1 -p0 -b .str
+%patch2 -p1 -b .external_libsigsegv
 
 %build
+rm -f configure
+autoconf; aclocal; automake; autoheader
 %configure2_5x
+
 %make
 
 %check
@@ -68,6 +76,7 @@ ln -s ../../bin/awk %{buildroot}%{_bindir}/awk
 ln -s ../../bin/gawk %{buildroot}%{_bindir}/gawk
 mv %{buildroot}/bin/pgawk %{buildroot}%{_bindir}
 rm %{buildroot}/bin/pgawk-%{version}
+rm %{buildroot}/bin/gawk-%{version}
 
 %post
 %_install_info gawk.info
