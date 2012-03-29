@@ -1,7 +1,7 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	4.0.0
-Release:	%mkrel 1
+Version:	4.0.1
+Release:	1
 License:	GPLv3+
 Group:		Text tools
 URL:		http://www.gnu.org/software/gawk/gawk.html
@@ -11,8 +11,6 @@ Provides:	awk
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
-Requires(pre):	info-install
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The gawk packages contains the GNU version of awk, a text processing
@@ -71,12 +69,6 @@ ln -s ../../bin/gawk %{buildroot}%{_bindir}/gawk
 mv %{buildroot}/bin/pgawk %{buildroot}%{_bindir}
 rm %{buildroot}/bin/pgawk-%{version}
 rm %{buildroot}/bin/gawk-%{version}
-
-%post
-%_install_info gawk.info
-
-%preun
-%_remove_install_info gawk.info
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
