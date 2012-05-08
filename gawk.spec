@@ -52,8 +52,6 @@ rm -rf ../%{name}-3.1.6
 make check
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %makeinstall_std  bindir=/bin
 %find_lang %{name}
 
@@ -70,9 +68,6 @@ ln -s ../../bin/gawk %{buildroot}%{_bindir}/gawk
 mv %{buildroot}/bin/pgawk %{buildroot}%{_bindir}
 rm %{buildroot}/bin/pgawk-%{version}
 rm %{buildroot}/bin/gawk-%{version}
-
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
