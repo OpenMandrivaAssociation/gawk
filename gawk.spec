@@ -79,6 +79,5 @@ rm %{buildroot}/bin/gawk-%{version}
 %{_datadir}/awk
 
 %files doc
-%defattr(-,root,root)
 %doc README FUTURES INSTALL LIMITATIONS NEWS
 %doc README_d POSIX.STD doc/*.ps
