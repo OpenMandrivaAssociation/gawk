@@ -1,3 +1,5 @@
+%bcond_with crosscompile
+
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
 Version:	4.0.2
@@ -43,7 +45,11 @@ rm -rf ../%{name}-3.1.6
 
 %build
 %configure2_5x \
+%if %{with crosscompile}
+	--with-libsigsegv-prefix=no \
+%else
 	--with-libsigsegv-prefix=%{_prefix} \
+%endif
 	--disable-rpath
 
 %make
