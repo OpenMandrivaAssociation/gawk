@@ -6,14 +6,14 @@ Version:	4.0.2
 Release:	1
 License:	GPLv3+
 Group:		Text tools
-URL:		http://www.gnu.org/software/gawk/gawk.html
+Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
 Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-3.1.6-ps.tar.gz
-Provides:	awk
-Provides:	/usr/bin/awk
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
+Provides:	awk
+Provides:	/usr/bin/awk
 
 %description
 The gawk packages contains the GNU version of awk, a text processing
@@ -46,11 +46,10 @@ rm -rf ../%{name}-3.1.6
 %build
 %configure2_5x \
 %if %{with crosscompile}
-	--with-libsigsegv-prefix=no \
+	--with-libsigsegv-prefix=no
 %else
-	--with-libsigsegv-prefix=%{_prefix} \
+	--with-libsigsegv-prefix=%{_prefix}
 %endif
-	--disable-rpath
 
 %make
 
@@ -64,7 +63,7 @@ make check
 mkdir -p %{buildroot}%{_bindir}
 cd %{buildroot}%{_datadir}
 mkdir awk && for i in *.awk;do
-  mv $i awk
+	mv $i awk
 done
 cd %{buildroot}%{_mandir}/man1
 ln -s gawk.1 awk.1
@@ -76,9 +75,8 @@ rm %{buildroot}/bin/pgawk-%{version}
 rm %{buildroot}/bin/gawk-%{version}
 
 %files -f %{name}.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) /bin/*
-%attr(755,root,root) %{_bindir}/*
+/bin/*
+%{_bindir}/*
 %{_mandir}/*/*
 %{_infodir}/*
 %{_libdir}/awk
@@ -87,3 +85,4 @@ rm %{buildroot}/bin/gawk-%{version}
 %files doc
 %doc README FUTURES INSTALL LIMITATIONS NEWS
 %doc README_d POSIX.STD doc/*.ps
+
