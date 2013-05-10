@@ -2,7 +2,7 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	4.0.2
+Version:	4.1.0
 Release:	1
 License:	GPLv3+
 Group:		Text tools
@@ -70,9 +70,11 @@ ln -s gawk.1 awk.1
 cd %{buildroot}%{_bindir}
 ln -s ../../bin/awk %{buildroot}%{_bindir}/awk
 ln -s ../../bin/gawk %{buildroot}%{_bindir}/gawk
-mv %{buildroot}/bin/pgawk %{buildroot}%{_bindir}
-rm %{buildroot}/bin/pgawk-%{version}
 rm %{buildroot}/bin/gawk-%{version}
+
+# For now, there's nothing that uses the gawk API.
+# Let's start shipping it if and when it becomes useful.
+rm -rf %buildroot%_includedir
 
 %files -f %{name}.lang
 /bin/*
@@ -80,9 +82,10 @@ rm %{buildroot}/bin/gawk-%{version}
 %{_mandir}/*/*
 %{_infodir}/*
 %{_libdir}/awk
+%{_libdir}/gawk
 %{_datadir}/awk
 
 %files doc
-%doc README FUTURES INSTALL LIMITATIONS NEWS
+%doc README INSTALL NEWS
 %doc README_d POSIX.STD doc/*.ps
 
