@@ -1,9 +1,10 @@
 %bcond_with crosscompile
+%define __noautoprov '.*\\.so(.*)'
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
 Version:	4.1.0
-Release:	5
+Release:	6
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
