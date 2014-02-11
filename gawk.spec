@@ -79,6 +79,7 @@ rm -rf %buildroot%_includedir
 %files -f %{name}.lang
 /bin/*
 %{_bindir}/*
+%{_libexecdir}/*
 %{_mandir}/*/*
 %{_infodir}/*
 %{_libdir}/awk
