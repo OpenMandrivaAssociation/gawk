@@ -82,7 +82,6 @@ rm -rf %buildroot%_includedir
 %{_libexecdir}/*
 %{_mandir}/*/*
 %{_infodir}/*
-%{_libdir}/awk
 %{_libdir}/gawk
 %{_datadir}/awk
 
