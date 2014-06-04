@@ -3,8 +3,8 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	4.1.0
-Release:	11.1
+Version:	4.1.1
+Release:	1
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
@@ -46,6 +46,9 @@ awk.
 mv ../%{name}-3.1.6/doc/*.ps doc
 rm -rf ../%{name}-3.1.6
 
+# bug with tests
+sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
+
 %build
 %configure2_5x \
 %if %{with crosscompile}
@@ -82,9 +85,9 @@ rm -rf %buildroot%_includedir
 %files -f %{name}.lang
 /bin/*
 %{_bindir}/*
+%{_libexecdir}/*
 %{_mandir}/*/*
 %{_infodir}/*
-%{_libdir}/awk
 %{_libdir}/gawk
 %{_datadir}/awk
 
