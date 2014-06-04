@@ -4,12 +4,14 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
 Version:	4.1.1
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
 Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-3.1.6-ps.tar.gz
+Patch1:		gawk-4.1.1-build-baddest.patch
+Patch2:		gawk-4.1.1-eval_invalid_free.patch 
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
@@ -43,6 +45,8 @@ awk.
 
 %prep
 %setup -q -b 1
+%patch1 -p1 -b .baddest~
+%patch2 -p1 -b .eval_invalid_free~
 mv ../%{name}-3.1.6/doc/*.ps doc
 rm -rf ../%{name}-3.1.6
 
