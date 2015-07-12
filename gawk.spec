@@ -13,6 +13,10 @@ Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-3.1.6-ps.tar.gz
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
+BuildRequires:	mpfr-devel
+BuildRequires:	gmp-devel
+# This allows some locale specific tests to pass
+BuildRequires:	locales-en
 Provides:	awk
 # do not remove, it's needed in synthesis which doesn't contain file paths,
 # which again rpm may auto generate provides against
@@ -50,7 +54,7 @@ rm -rf ../%{name}-3.1.6
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
 %build
-%configure2_5x \
+%configure \
 %if %{with crosscompile}
 	--with-libsigsegv-prefix=no
 %else
