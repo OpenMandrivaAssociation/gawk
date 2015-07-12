@@ -3,7 +3,7 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	4.1.2
+Version:	4.1.3
 Release:	1
 License:	GPLv3+
 Group:		Text tools
