@@ -4,7 +4,7 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
 Version:	4.1.3
-Release:	4
+Release:	5
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
@@ -15,7 +15,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
 BuildRequires:	mpfr-devel
 BuildRequires:	gmp-devel
-BuildRequires:	readline-devel
+BuildRequires:	readline-devel >= 7.0
 # This allows some locale specific tests to pass
 BuildRequires:	locales-en
 Provides:	awk
