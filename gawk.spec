@@ -3,8 +3,8 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	4.1.3
-Release:	5
+Version:	4.1.4
+Release:	1
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
@@ -21,7 +21,8 @@ BuildRequires:	locales-en
 Provides:	awk
 # do not remove, it's needed in synthesis which doesn't contain file paths,
 # which again rpm may auto generate provides against
-Provides:	/bin/awk /usr/bin/awk
+Provides:	/bin/awk
+Provides:	/usr/bin/awk
 
 %description
 The gawk packages contains the GNU version of awk, a text processing
