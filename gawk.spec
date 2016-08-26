@@ -16,6 +16,7 @@ BuildRequires:	libsigsegv-devel >= 2.8
 BuildRequires:	mpfr-devel
 BuildRequires:	gmp-devel
 BuildRequires:	readline-devel >= 7.0
+BuildRequires:	autoconf-archive
 # This allows some locale specific tests to pass
 BuildRequires:	locales-en
 Provides:	awk
