@@ -57,6 +57,8 @@ rm -rf ../%{name}-3.1.6
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
 %build
+%define _disable_rebuild_configure 1
+
 %configure \
 %if %{with crosscompile}
 	--with-libsigsegv-prefix=no
