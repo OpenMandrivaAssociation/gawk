@@ -3,8 +3,8 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	4.1.3
-Release:	5
+Version:	4.1.4
+Release:	1
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
@@ -16,12 +16,14 @@ BuildRequires:	libsigsegv-devel >= 2.8
 BuildRequires:	mpfr-devel
 BuildRequires:	gmp-devel
 BuildRequires:	readline-devel >= 7.0
+BuildRequires:	autoconf-archive
 # This allows some locale specific tests to pass
 BuildRequires:	locales-en
 Provides:	awk
 # do not remove, it's needed in synthesis which doesn't contain file paths,
 # which again rpm may auto generate provides against
-Provides:	/bin/awk /usr/bin/awk
+Provides:	/bin/awk
+Provides:	/usr/bin/awk
 
 %description
 The gawk packages contains the GNU version of awk, a text processing
@@ -55,6 +57,8 @@ rm -rf ../%{name}-3.1.6
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
 %build
+%define _disable_rebuild_configure 1
+
 %configure \
 %if %{with crosscompile}
 	--with-libsigsegv-prefix=no
