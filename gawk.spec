@@ -3,13 +3,12 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	4.1.4
+Version:	4.2.0
 Release:	1
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
-Source1:	http://ftp.gnu.org/gnu/gawk/%{name}-3.1.6-ps.tar.gz
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
@@ -17,6 +16,12 @@ BuildRequires:	mpfr-devel
 BuildRequires:	gmp-devel
 BuildRequires:	readline-devel >= 7.0
 BuildRequires:	autoconf-archive
+# For building docs
+BuildRequires:	texlive-epsf
+BuildRequires:	texlive
+BuildRequires:	texinfo
+BuildRequires:	texlive-dvips
+BuildRequires:	texlive-collection-latex
 # This allows some locale specific tests to pass
 BuildRequires:	locales-en
 Provides:	awk
@@ -49,10 +54,7 @@ is almost completely compliant with the 1993 POSIX 1003.2 standard for
 awk.
 
 %prep
-%setup -q -b 1
-mv ../%{name}-3.1.6/doc/*.ps doc
-rm -rf ../%{name}-3.1.6
-
+%setup -q
 # bug with tests
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
@@ -67,6 +69,7 @@ sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 %endif
 
 %make
+%make ps pdf
 
 # (tpg) seems like tests fails due to overlayfs which is used inside docker-builder
 #check
@@ -100,7 +103,8 @@ rm -rf %buildroot%_includedir
 %{_infodir}/*
 %{_libdir}/gawk
 %{_datadir}/awk
+%{_sysconfdir}/profile.d/gawk.*
 
 %files doc
 %doc README INSTALL NEWS
-%doc README_d POSIX.STD doc/*.ps
+%doc README_d POSIX.STD doc/*.ps doc/*.pdf
