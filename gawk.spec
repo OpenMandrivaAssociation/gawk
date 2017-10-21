@@ -70,7 +70,7 @@ sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 %endif
 
 %make
-%make ps pdf
+%make pdf
 
 # (tpg) seems like tests fails due to overlayfs which is used inside docker-builder
 #check
@@ -108,4 +108,4 @@ rm -rf %buildroot%_includedir
 
 %files doc
 %doc README INSTALL NEWS
-%doc README_d POSIX.STD doc/*.ps doc/*.pdf
+%doc README_d POSIX.STD doc/*.pdf
