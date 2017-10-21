@@ -22,6 +22,7 @@ BuildRequires:	texlive
 BuildRequires:	texinfo
 BuildRequires:	texlive-dvips
 BuildRequires:	texlive-collection-latex
+BuildRequires:	groff
 # This allows some locale specific tests to pass
 BuildRequires:	locales-en
 Provides:	awk
