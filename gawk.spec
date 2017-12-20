@@ -4,11 +4,13 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
 Version:	4.2.0
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
+Patch001:	gawk-4.2.0-000-do-not-fold-constant-strings.patch
+Patch002:	gawk-4.2.0-001-rwarray-small-improvements.patch
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
@@ -56,6 +58,7 @@ awk.
 
 %prep
 %setup -q
+%apply_patches
 # bug with tests
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
