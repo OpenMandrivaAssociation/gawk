@@ -3,8 +3,8 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	4.2.0
-Release:	3
+Version:	4.2.1
+Release:	1
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
@@ -44,11 +44,11 @@ awk.
 Install the gawk package if you need a text processing utility. Gawk is
 considered to be a standard Linux tool for processing text.
 
-%package	doc
+%package doc
 Summary:	Documentation about the GNU version of the awk text processing utility
 Group:		Books/Computer books
 
-%description	doc
+%description doc
 The gawk packages contains the GNU version of awk, a text processing
 utility.  Awk interprets a special-purpose programming language to do
 quick and easy text pattern matching and reformatting jobs. Gawk should
