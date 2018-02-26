@@ -9,8 +9,6 @@ License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
-Patch001:	gawk-4.2.0-000-do-not-fold-constant-strings.patch
-Patch002:	gawk-4.2.0-001-rwarray-small-improvements.patch
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
