@@ -56,7 +56,7 @@ awk.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 # bug with tests
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
@@ -70,15 +70,15 @@ sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 	--with-libsigsegv-prefix=%{_prefix}
 %endif
 
-%make
-%make pdf
+%make_build
+%make_build -C doc
 
 # (tpg) seems like tests fails due to overlayfs which is used inside docker-builder
 #check
 #make check
 
 %install
-%makeinstall_std  bindir=/bin
+%make_install  bindir=/bin
 %find_lang %{name}
 
 mkdir -p %{buildroot}%{_bindir}
