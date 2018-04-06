@@ -3,14 +3,12 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	4.2.0
-Release:	2
+Version:	4.2.1
+Release:	1
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
-Patch001:	gawk-4.2.0-000-do-not-fold-constant-strings.patch
-Patch002:	gawk-4.2.0-001-rwarray-small-improvements.patch
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
@@ -73,7 +71,7 @@ sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 %endif
 
 %make
-%make pdf
+%make -C doc
 
 # (tpg) seems like tests fails due to overlayfs which is used inside docker-builder
 #check
@@ -86,7 +84,7 @@ sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 mkdir -p %{buildroot}%{_bindir}
 cd %{buildroot}%{_datadir}
 mkdir awk && for i in *.awk;do
-	mv $i awk
+    mv $i awk
 done
 cd %{buildroot}%{_mandir}/man1
 ln -s gawk.1 awk.1
