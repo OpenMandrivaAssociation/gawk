@@ -4,11 +4,17 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
 Version:	4.2.1
-Release:	2
+Release:	3
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
+# (tpg) patches from upstream
+Patch000:	gawk-4.2.1-000-add-support-for-a-and-A-in-printf.patch
+Patch001:	gawk-4.2.1-001-remove-the-tail-recursion-optimization.patch
+Patch002:	gawk-4.2.1-002-copy-MPZ-MPFR-bits-also-in-r_dupnode.patch
+Patch003:	gawk-4.2.1-003-fix-rebuilding-records-if-using-API-parser.patch
+Patch004:	gawk-4.2.1-004-fix-a-corner-case-with-EPIPE-to-stdout-stderr.patch
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
@@ -55,8 +61,8 @@ is almost completely compliant with the 1993 POSIX 1003.2 standard for
 awk.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
+
 # bug with tests
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
