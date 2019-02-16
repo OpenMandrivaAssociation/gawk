@@ -70,6 +70,12 @@ sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 %build
 %define _disable_rebuild_configure 1
 
+libtoolize --force
+aclocal -I m4
+autoheader
+automake -a
+autoconf
+
 %configure \
 %if %{with crosscompile}
 	--with-libsigsegv-prefix=no
