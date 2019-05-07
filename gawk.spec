@@ -1,5 +1,5 @@
 %bcond_with crosscompile
-%define __noautoprov '.*\\.so(.*)'
+%define __provides_exclude '.*\\.so(.*)'
 %global optflags %{optflags} -O3
 
 Summary:	The GNU version of the awk text processing utility
