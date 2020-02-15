@@ -24,11 +24,7 @@ BuildRequires:	gmp-devel
 BuildRequires:	readline-devel >= 7.0
 BuildRequires:	autoconf-archive
 # For building docs
-BuildRequires:	texlive-epsf
-BuildRequires:	texlive
 BuildRequires:	texinfo
-BuildRequires:	texlive-dvips
-BuildRequires:	texlive-collection-latex
 BuildRequires:	groff
 # This allows some locale specific tests to pass
 BuildRequires:	locales-en
