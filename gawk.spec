@@ -10,6 +10,12 @@ License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
+# https://bugzilla.redhat.com/show_bug.cgi?id=1723359
+Patch005: gawk-inplace-namespace-part1.patch
+Patch006: gawk-inplace-namespace-part2.patch
+#Parts of the patch dealing with .info files, were removed, some parts of documentation might be broken
+Patch007: gawk-inplace-namespace-part3.patch
+Patch008: gawk-api-version.patch
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
@@ -62,8 +68,9 @@ awk.
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
 %build
+export CC=gcc
+export CXX=g++
 %define _disable_rebuild_configure 1
-
 libtoolize --force
 aclocal -I m4
 autoheader
