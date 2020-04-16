@@ -1,0 +1,73 @@
+diff -up gawk-5.1.0/configure.ac.omv~ gawk-5.1.0/configure.ac
+diff -up gawk-5.1.0/m4/lib-link.m4.omv~ gawk-5.1.0/m4/lib-link.m4
+--- gawk-5.1.0/m4/lib-link.m4.omv~	2020-04-17 01:44:55.677769040 +0200
++++ gawk-5.1.0/m4/lib-link.m4	2020-04-17 01:46:49.913041223 +0200
+@@ -370,7 +370,7 @@ AC_DEFUN([AC_LIB_LINKFLAGS_BODY],
+           fi
+           if test "X$found_dir" != "X"; then
+             dnl Found the library.
+-            LTLIB[]NAME="${LTLIB[]NAME}${LTLIB[]NAME:+ }-L$found_dir -l$name"
++            LTLIB[]NAME="${LTLIB[]NAME}${LTLIB[]NAME:+ } -l$name"
+             if test "X$found_so" != "X"; then
+               dnl Linking with a shared library. We attempt to hardcode its
+               dnl directory into the executable's runpath, unless it's the
+@@ -430,7 +430,7 @@ AC_DEFUN([AC_LIB_LINKFLAGS_BODY],
+                       fi
+                     done
+                     if test -z "$haveit"; then
+-                      LIB[]NAME="${LIB[]NAME}${LIB[]NAME:+ }-L$found_dir"
++                      LIB[]NAME="${LIB[]NAME}${LIB[]NAME:+ }"
+                     fi
+                     if test "$acl_hardcode_minus_L" != no; then
+                       dnl FIXME: Not sure whether we should use
+@@ -457,7 +457,7 @@ AC_DEFUN([AC_LIB_LINKFLAGS_BODY],
+               else
+                 dnl We shouldn't come here, but anyway it's good to have a
+                 dnl fallback.
+-                LIB[]NAME="${LIB[]NAME}${LIB[]NAME:+ }-L$found_dir -l$name"
++                LIB[]NAME="${LIB[]NAME}${LIB[]NAME:+ } -l$name"
+               fi
+             fi
+             dnl Assume the include files are nearby.
+@@ -558,7 +558,7 @@ AC_DEFUN([AC_LIB_LINKFLAGS_BODY],
+                         if test -z "$haveit"; then
+                           if test -d "$additional_libdir"; then
+                             dnl Really add $additional_libdir to $LIBNAME.
+-                            LIB[]NAME="${LIB[]NAME}${LIB[]NAME:+ }-L$additional_libdir"
++                            LIB[]NAME="${LIB[]NAME}${LIB[]NAME:+ }"
+                           fi
+                         fi
+                         haveit=
+@@ -572,7 +572,7 @@ AC_DEFUN([AC_LIB_LINKFLAGS_BODY],
+                         if test -z "$haveit"; then
+                           if test -d "$additional_libdir"; then
+                             dnl Really add $additional_libdir to $LTLIBNAME.
+-                            LTLIB[]NAME="${LTLIB[]NAME}${LTLIB[]NAME:+ }-L$additional_libdir"
++                            LTLIB[]NAME="${LTLIB[]NAME}${LTLIB[]NAME:+ }"
+                           fi
+                         fi
+                       fi
+diff -up gawk-5.1.0/m4/mpfr.m4.omv~ gawk-5.1.0/m4/mpfr.m4
+--- gawk-5.1.0/m4/mpfr.m4.omv~	2020-04-17 01:44:30.581489554 +0200
++++ gawk-5.1.0/m4/mpfr.m4	2020-04-17 01:44:39.925593615 +0200
+@@ -18,7 +18,7 @@ AC_DEFUN([GNUPG_CHECK_MPFR],
+      [_do_mpfr=$withval],[_do_mpfr=yes])
+ 
+   if test "$_do_mpfr" != "no" ; then
+-     if test -d "$withval" ; then
++     if test -d "$withval" -a "$withval" != "/usr"; then
+         CPPFLAGS="${CPPFLAGS} -I$withval/include"
+         LDFLAGS="${LDFLAGS} -L$withval/lib"
+      fi
+diff -up gawk-5.1.0/m4/readline.m4.omv~ gawk-5.1.0/m4/readline.m4
+--- gawk-5.1.0/m4/readline.m4.omv~	2020-04-17 01:43:14.484642097 +0200
++++ gawk-5.1.0/m4/readline.m4	2020-04-17 01:43:40.117927565 +0200
+@@ -24,7 +24,7 @@ AC_DEFUN([GAWK_CHECK_READLINE],
+      [_do_readline=$withval],[_do_readline=yes])
+ 
+   if test "$_do_readline" != "no" ; then
+-     if test -d "$withval" ; then
++     if test -d "$withval" -a "$withval" != "/usr" ; then
+         CPPFLAGS="${CPPFLAGS} -I$withval/include"
+         LDFLAGS="${LDFLAGS} -L$withval/lib"
+      fi
