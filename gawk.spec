@@ -5,7 +5,7 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
 Version:	5.1.0
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
@@ -14,9 +14,9 @@ Patch0:		gawk-5.1.0-no-Lusrlib.patch
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8
-BuildRequires:	mpfr-devel
-BuildRequires:	gmp-devel
-BuildRequires:	readline-devel >= 7.0
+BuildRequires:	pkgconfig(mpfr)
+BuildRequires:	pkgconfig(gmp)
+BuildRequires:	pkgconfig(readline)
 BuildRequires:	autoconf-archive
 # For building docs
 BuildRequires:	texinfo
