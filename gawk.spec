@@ -1,11 +1,12 @@
 %bcond_with crosscompile
+%define _disable_rebuild_configure 1
 %define __provides_exclude '.*\\.so(.*)'
 %global optflags %{optflags} -O3
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	5.1.0
-Release:	3
+Version:	5.1.1
+Release:	1
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
@@ -60,7 +61,6 @@ awk.
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
 %build
-%define _disable_rebuild_configure 1
 libtoolize --force
 aclocal -I m4
 autoheader
