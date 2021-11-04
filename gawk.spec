@@ -13,6 +13,7 @@ Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
 Patch0:		gawk-5.1.0-no-Lusrlib.patch
 Patch1:		gawk-5.1.0-fix-clang.patch
+
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
 BuildRequires:	libsigsegv-devel >= 2.8

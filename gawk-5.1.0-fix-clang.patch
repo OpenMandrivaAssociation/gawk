@@ -1,12 +1,24 @@
-diff -Naur gawk-5.1.0/support/intprops.h gawk-5.1.0.tpg/support/intprops.h
---- gawk-5.1.0/support/intprops.h	2020-02-06 20:52:57.000000000 +0000
-+++ gawk-5.1.0.tpg/support/intprops.h	2021-09-22 22:02:20.357608853 +0000
-@@ -228,7 +228,7 @@
+diff -Naur gawk-5.1.1/support/cdefs.h gawk-5.1.1.tpg/support/cdefs.h
+--- gawk-5.1.1/support/cdefs.h	2021-10-23 18:54:40.000000000 +0000
++++ gawk-5.1.1.tpg/support/cdefs.h	2021-11-04 09:48:24.708861313 +0000
+@@ -682,7 +682,7 @@
+ #  define __attr_access_none(argno)
  #endif
  
- /* True if __builtin_add_overflow_p (A, B, C) works.  */
--#define _GL_HAS_BUILTIN_OVERFLOW_P (7 <= __GNUC__)
-+#define _GL_HAS_BUILTIN_OVERFLOW_P (7 <= __GNUC__) && !defined(__clang__)
+-#if __GNUC_PREREQ (11, 0)
++#if __GNUC_PREREQ (11, 0) && !defined(__clang__)
+ /* Designates dealloc as a function to call to deallocate objects
+    allocated by the declared function.  */
+ # define __attr_dealloc(dealloc, argno) \
+diff -Naur gawk-5.1.1/support/intprops.h gawk-5.1.1.tpg/support/intprops.h
+--- gawk-5.1.1/support/intprops.h	2021-10-23 18:49:15.000000000 +0000
++++ gawk-5.1.1.tpg/support/intprops.h	2021-11-04 09:45:10.149724104 +0000
+@@ -258,7 +258,7 @@
+ #elif defined __has_builtin
+ # define _GL_HAS_BUILTIN_OVERFLOW_P __has_builtin (__builtin_mul_overflow_p)
+ #else
+-# define _GL_HAS_BUILTIN_OVERFLOW_P (7 <= __GNUC__)
++# define _GL_HAS_BUILTIN_OVERFLOW_P (7 <= __GNUC__) && !defined(__clang__)
+ #endif
  
  /* The _GL*_OVERFLOW macros have the same restrictions as the
-    *_RANGE_OVERFLOW macros, except that they do not assume that operands
