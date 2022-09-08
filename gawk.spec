@@ -6,13 +6,15 @@
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
 Version:	5.2.0
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
 Patch0:		gawk-5.1.0-no-Lusrlib.patch
 Patch1:		gawk-5.1.0-fix-clang.patch
+# https://bugs.gentoo.org/868567
+Patch2:		https://868567.bugs.gentoo.org/attachment.cgi?id=803497#/fix-double-free.patch
 
 BuildRequires:	byacc
 BuildRequires:	gettext-devel
