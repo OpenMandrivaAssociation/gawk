@@ -1,7 +1,7 @@
 %bcond_with crosscompile
 %define _disable_rebuild_configure 1
 %define __provides_exclude '.*\\.so(.*)'
-%global optflags %{optflags} -O3
+%global optflags %{optflags} -Oz
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
@@ -80,7 +80,9 @@ autoconf
 %make_build AR=llvm-ar RANLIB=llvm-ranlib
 %make_build -C doc
 
-# (tpg) seems like tests fails due to overlayfs which is used inside docker-builder
+# (tpg) 2022-09-12 fails on mpfrbigint
+# ./mpfrbigint.ok _mpfrbigint differ: char 133, line 4
+# make[3]: [Makefile:5426: mpfrbigint] Error 1 (ignored)
 #check
 #make check
 
@@ -88,14 +90,7 @@ autoconf
 %make_install
 %find_lang %{name}
 
-
-cd %{buildroot}%{_datadir}
-mkdir awk && for i in *.awk;do
-    mv $i awk
-done
-cd %{buildroot}%{_mandir}/man1
-ln -s gawk.1 awk.1
-
+ln -s gawk.1 %{buildroot}%{_mandir}/man1/awk.1
 rm %{buildroot}/%{_bindir}/gawk-%{version}
 
 # For now, there's nothing that uses the gawk API.
@@ -105,11 +100,11 @@ rm -rf %{buildroot}%{_includedir}
 %files -f %{name}.lang
 %{_bindir}/*
 %{_libexecdir}/*
-%doc %{_mandir}/*/*
-%doc %{_infodir}/*
 %{_libdir}/gawk
 %{_datadir}/awk
 %{_sysconfdir}/profile.d/gawk.*
+%doc %{_mandir}/*/*
+%doc %{_infodir}/*
 
 %files doc
 %doc README INSTALL NEWS
