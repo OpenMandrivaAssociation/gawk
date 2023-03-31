@@ -13,7 +13,7 @@ Name:		gawk
 # - Make sure it doesn't break building kernels
 # Any update that breaks plymouth will be reverted.
 Version:	5.1.1
-Release:	4
+Release:	5
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
