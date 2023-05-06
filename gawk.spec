@@ -1,7 +1,7 @@
 %bcond_with crosscompile
 %define _disable_rebuild_configure 1
 %define __provides_exclude '.*\\.so(.*)'
-%global optflags %{optflags} -O3
+%global optflags %{optflags} -Oz
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
@@ -12,8 +12,8 @@ Name:		gawk
 #   https://github.com/OpenMandrivaAssociation/distribution/issues/2841#issuecomment-1243959451
 # - Make sure it doesn't break building kernels
 # Any update that breaks plymouth will be reverted.
-Version:	5.1.1
-Release:	5
+Version:	5.2.1
+Release:	1
 License:	GPLv3+
 Group:		Text tools
 Url:		http://www.gnu.org/software/gawk/gawk.html
