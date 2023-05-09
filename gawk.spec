@@ -12,7 +12,7 @@ Name:		gawk
 #   https://github.com/OpenMandrivaAssociation/distribution/issues/2841#issuecomment-1243959451
 # - Make sure it doesn't break building kernels
 # Any update that breaks plymouth will be reverted.
-Version:	5.2.1
+Version:	5.2.2
 Release:	1
 License:	GPLv3+
 Group:		Text tools
