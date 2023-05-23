@@ -82,7 +82,12 @@ autoconf
 	--with-libsigsegv-prefix=%{_prefix}
 %endif
 
-%make_build AR=llvm-ar RANLIB=llvm-ranlib
+%make_build \
+%if %{cross_compiling}
+	AWK=%{_bindir}/gawk \
+%endif
+	AR=llvm-ar \
+	RANLIB=llvm-ranlib
 %make_build -C doc
 
 # (tpg) seems like tests fails due to overlayfs which is used inside docker-builder
