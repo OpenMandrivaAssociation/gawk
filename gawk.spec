@@ -5,14 +5,7 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-# BEFORE UPDATING TO 5.2.0 OR ANY NEWER VERSION:
-# - Use the gawk-5.2 branch in this repository that already has 5.2.0
-#   and a vital patch
-# - Make sure it doesn't break plymouth anymore
-#   https://github.com/OpenMandrivaAssociation/distribution/issues/2841#issuecomment-1243959451
-# - Make sure it doesn't break building kernels
-# Any update that breaks plymouth will be reverted.
-Version:	5.2.2
+Version:	5.3.0
 Release:	1
 License:	GPLv3+
 Group:		Text tools
