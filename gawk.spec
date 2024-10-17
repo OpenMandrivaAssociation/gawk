@@ -9,7 +9,7 @@ Version:	5.3.1
 Release:	1
 License:	GPLv3+
 Group:		Text tools
-Url:		http://www.gnu.org/software/gawk/gawk.html
+Url:		https://www.gnu.org/software/gawk/gawk.html
 Source0:	http://ftp.gnu.org/gnu/gawk/%{name}-%{version}.tar.xz
 Patch0:		gawk-5.1.0-no-Lusrlib.patch
 Patch1:		gawk-5.1.0-fix-clang.patch
