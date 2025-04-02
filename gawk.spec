@@ -5,7 +5,7 @@
 
 Summary:	The GNU version of the awk text processing utility
 Name:		gawk
-Version:	5.3.1
+Version:	5.3.2
 Release:	1
 License:	GPLv3+
 Group:		Text tools
@@ -20,6 +20,7 @@ BuildRequires:	libsigsegv-devel >= 2.8
 BuildRequires:	pkgconfig(mpfr)
 BuildRequires:	pkgconfig(gmp)
 BuildRequires:	pkgconfig(readline)
+BuildRequires:	slibtool
 BuildRequires:	autoconf-archive
 # For building docs
 BuildRequires:	texinfo
@@ -62,7 +63,15 @@ awk.
 sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in
 
 %build
-libtoolize --force
+cd extension
+slibtoolize --force
+aclocal -I ../m4
+autoheader
+automake -a
+autoconf
+cd ..
+
+slibtoolize --force
 aclocal -I m4
 autoheader
 automake -a
